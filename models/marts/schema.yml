@@ -1,0 +1,37 @@
+version: 2
+
+models:
+  - name: fact_bookings
+    description: One row per booking, with total payment amount attached. Grain - booking_id.
+    columns:
+      - name: booking_id
+        description: Primary key for a booking.
+        tests:
+          - unique
+          - not_null
+      - name: amount
+        description: Total amount paid for the booking, across all payment methods.
+        tests:
+          - not_null
+
+  - name: dim_guests
+    description: >
+      One row per guest, enriched with booking history, lifetime value,
+      and a simple value-based segment derived from booking value and frequency.
+      Does not calculate hotel-specific revenue-management metrics (e.g. RevPAR, ADR) -
+      scope is limited to guest-level value segmentation.
+    columns:
+      - name: guest_id
+        description: Primary key for a guest.
+        tests:
+          - unique
+          - not_null
+      - name: lifetime_value
+        description: Sum of non-cancelled booking amounts for the guest.
+        tests:
+          - not_null
+      - name: value_segment
+        description: Simple value-based segment derived from lifetime_value.
+        tests:
+          - accepted_values:
+              values: ['high_value', 'medium_value', 'low_value', 'no_booking']

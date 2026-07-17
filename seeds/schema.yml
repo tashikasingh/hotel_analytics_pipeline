@@ -1,0 +1,43 @@
+version: 2
+
+seeds:
+  - name: raw_guests
+    description: Raw guest records loaded from source system.
+    columns:
+      - name: id
+        description: Primary key for a guest.
+        tests:
+          - unique
+          - not_null
+
+  - name: raw_bookings
+    description: Raw booking records loaded from source system.
+    columns:
+      - name: id
+        description: Primary key for a booking.
+        tests:
+          - unique
+          - not_null
+      - name: guest_id
+        description: Foreign key to raw_guests.id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_guests')
+              field: id
+
+  - name: raw_payments
+    description: Raw payment records loaded from source system.
+    columns:
+      - name: id
+        description: Primary key for a payment.
+        tests:
+          - unique
+          - not_null
+      - name: booking_id
+        description: Foreign key to raw_bookings.id
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_bookings')
+              field: id

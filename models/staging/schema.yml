@@ -1,0 +1,39 @@
+version: 2
+
+models:
+  - name: stg_guests
+    description: Cleaned, renamed guest records - one row per guest.
+    columns:
+      - name: guest_id
+        description: Primary key for a guest.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_bookings
+    description: Cleaned, renamed booking records - one row per booking.
+    columns:
+      - name: booking_id
+        description: Primary key for a booking.
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: Booking status.
+        tests:
+          - accepted_values:
+              values: ['checked_out', 'confirmed', 'cancelled']
+
+  - name: stg_payments
+    description: Cleaned payment records with amount converted to decimal currency units.
+    columns:
+      - name: payment_id
+        description: Primary key for a payment.
+        tests:
+          - unique
+          - not_null
+      - name: payment_method
+        description: Method used to pay for the booking.
+        tests:
+          - accepted_values:
+              values: ['credit_card', 'coupon', 'bank_transfer', 'gift_card']
