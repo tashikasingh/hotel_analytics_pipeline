@@ -1,8 +1,19 @@
-# Hotel Analytics Pipeline — dbt + Snowflake
+# Hotel Analytics Pipeline — dbt + Snowflake + Streamlit
 
 An end-to-end analytics engineering pipeline built with dbt Core, modelling raw hotel guest,
 booking and payment data into a clean, tested, documented set of staging and mart tables —
-including a guest lifetime value (LTV) and value-segmentation model.
+including a guest lifetime value (LTV) and value-segmentation model — with an interactive
+Streamlit dashboard built on top for trend and segment analysis.
+
+## Dashboard
+
+![Dashboard overview](/Users/tashikasingh/Documents/hotel_analytics_pipeline/screenshots/Screenshot 2026-07-17 at 14.16.10.png)
+
+![Guest segmentation](/Users/tashikasingh/Documents/hotel_analytics_pipeline/screenshots/Screenshot 2026-07-17 at 14.16.34.png)
+
+Built with Streamlit in Snowflake — KPI summary, an interactive monthly trend chart (switchable
+between revenue, bookings, and average booking value), a guest value-segment breakdown, and a
+filterable guest table sorted by lifetime value.
 
 ## Why this project
 
@@ -24,6 +35,8 @@ raw_payments ────┘
   - `dim_guests` — one row per guest, enriched with booking history, **lifetime value**, and a
     simple **value_segment** (`high_value` / `medium_value` / `low_value` / `no_booking`), based
     purely on booking value and frequency.
+  - `monthly_booking_trends` — booking volume, revenue, and average booking value by month, for
+    time-series trend analysis.
 
 ## Scope note
 
@@ -41,7 +54,7 @@ value segment).
 
 ## Tech stack
 
-dbt Core · Snowflake · SQL · Git
+dbt Core · Snowflake · Streamlit · SQL · Git
 
 ## Status
 
