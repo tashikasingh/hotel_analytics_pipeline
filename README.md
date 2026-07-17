@@ -7,9 +7,11 @@ Streamlit dashboard built on top for trend and segment analysis.
 
 ## Dashboard
 
-![Dashboard overview](/Users/tashikasingh/Documents/hotel_analytics_pipeline/screenshots/Screenshot 2026-07-17 at 14.16.10.png)
+![Dashboard overview](screenshots/dashboard_overview1.png)
 
-![Guest segmentation](/Users/tashikasingh/Documents/hotel_analytics_pipeline/screenshots/Screenshot 2026-07-17 at 14.16.34.png)
+![Dashboard overview](screenshots/dashboard_overview2.png)
+
+![Guest segmentation](screenshots/guest_segmentation.png)
 
 Built with Streamlit in Snowflake — KPI summary, an interactive monthly trend chart (switchable
 between revenue, bookings, and average booking value), a guest value-segment breakdown, and a
